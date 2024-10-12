@@ -3,7 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 // import Logo from "../components/Logo";
 import Logo from "@/components/Logo";
-export default function Home() {
+// import axios from "axios";
+export default async function Home() {
+  // const response = await axios("https://bytegrad.com/course-assets/projects/petsoft/api/pets");
+  // console.log(response)
+
+  const response = await fetch(
+    "https://65d41d72522627d50109e1a3.mockapi.io/api/v1/pets",
+  );
+  const data = await response.json();
+  console.log(data, "data");
+
   return (
     <main className="bg-[#5DC9A8] min-h-screen flex flex-col xl:flex-row items-center justify-center gap-10">
       <Image
