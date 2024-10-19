@@ -56,14 +56,10 @@ export default function PetButton({
           </DialogTitle>
         </DialogHeader>
 
-        {/* <PetForm
+        <PetForm
           actionType={actionType}
-          onFormSubmission={() => {
-            flushSync(() => {
-              setIsFormOpen(false);
-            });
-          }}
-        /> */}
+          onFormSubmission={() => setIsFormOpen(false)}
+        />
       </DialogContent>
     </Dialog>
   );
