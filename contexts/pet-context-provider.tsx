@@ -53,23 +53,23 @@ export default function PetContextProvider({
 
   const handleEditPet = (petId: string, newPetData: Omit<Pet, "id">) => {
     //
-    setPets((prevPets) => {
-      return prevPets.map((pet) => {
-        if (pet.id === petId) {
-          return {
-            id: petId,
-            ...newPetData,
-          };
-        }
-        return pet;
-      });
-    });
+    // setPets((prevPets) => {
+    //   return prevPets.map((pet) => {
+    //     if (pet.id === petId) {
+    //       return {
+    //         id: petId,
+    //         ...newPetData,
+    //       };
+    //     }
+    //     return pet;
+    //   });
+    // });
   };
 
   const handleCheckoutPet = (id: string) => {
-    setPets((prevPets) => {
-      return prevPets.filter((pet) => pet.id !== id);
-    });
+    // setPets((prevPets) => {
+    //   return prevPets.filter((pet) => pet.id !== id);
+    // });
   };
 
   return (

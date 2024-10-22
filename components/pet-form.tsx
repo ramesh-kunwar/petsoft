@@ -3,10 +3,10 @@ import { Label } from "@radix-ui/react-label";
 import React from "react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { Button } from "./ui/button";
 import { usePetContext } from "@/lib/hooks";
-import { addPet } from "@/actions/actions";
+import { addPet, editPet } from "@/actions/actions";
 import PetFormBtn from "./pet-form-btn";
+import { toast } from "sonner";
 
 type PetFormProps = {
   actionType: "add" | "edit";
@@ -16,13 +16,20 @@ type PetFormProps = {
 const PetForm = ({ actionType, onFormSubmission }: PetFormProps) => {
   const { selectedPet } = usePetContext();
 
-  async function addPetHandler(formData) {
-    await addPet(formData);
-    onFormSubmission(); // for closing the modal
-  }
   return (
     <form
-      action={(formData) => addPetHandler(formData)}
+      // action={(formData) => addPetHandler(formData)}
+      action={(formData) => {
+        if (actionType === "add") {
+          addPet(formData);
+          toast("Pet added successfully");
+        }
+        if (actionType === "edit") {
+          editPet(selectedPet?.id, formData);
+          toast("Pet edited successfully");
+        }
+        onFormSubmission(); // for closing the modal
+      }}
       className="flex flex-col "
     >
       <div className="space-y-3">
@@ -82,5 +89,4 @@ const PetForm = ({ actionType, onFormSubmission }: PetFormProps) => {
     </form>
   );
 };
-
 export default PetForm;
