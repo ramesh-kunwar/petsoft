@@ -3,6 +3,7 @@ import { usePetContext } from "@/lib/hooks";
 import Image from "next/image";
 import { Pet } from "@/lib/types";
 import PetButton from "./pet-button";
+import { deletePet } from "@/actions/actions";
 const PetDetails = () => {
   const { selectedPet } = usePetContext();
   return (
@@ -33,7 +34,7 @@ function EmptyView() {
 }
 
 type Props = {
-  pet: Pet  | null;
+  pet: Pet | null;
 };
 
 function TopBar({ pet }: Props) {
@@ -55,7 +56,7 @@ function TopBar({ pet }: Props) {
           <PetButton actionType="edit">Edit</PetButton>
           <PetButton
             actionType="checkout"
-            onClick={() => handleCheckoutPet(pet.id)}
+            onClick={async () => await deletePet(pet.id)}
           >
             Checkout
           </PetButton>

@@ -27,6 +27,7 @@ export async function addPet(formData: any) {
 }
 
 export async function editPet(petId: any, formData: any) {
+  await sleep(2000);
   try {
     await prisma.pet.update({
       where: {
@@ -45,6 +46,22 @@ export async function editPet(petId: any, formData: any) {
   } catch (error) {
     return {
       message: "Could not edit pet",
+    };
+  }
+  revalidatePath("/app", "layout");
+}
+
+export async function deletePet(petId: any) {
+  await sleep(2000);
+  try {
+    await prisma.pet.delete({
+      where: {
+        id: petId,
+      },
+    });
+  } catch (error) {
+    return {
+      message: "Could not delete pet",
     };
   }
   revalidatePath("/app", "layout");
