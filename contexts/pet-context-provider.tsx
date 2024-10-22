@@ -21,14 +21,14 @@ type TPetcontext = {
 export const PetContext = createContext<TPetcontext | null>(null);
 
 export default function PetContextProvider({
-  data,
+  data: pets,
   children,
 }: PetContextProviderProps) {
   //
   //
 
   // sate
-  const [pets, setPets] = useState(data);
+  // const [pets, setPets] = useState(data);
   const [selectedPetId, setSelectedPetId] = useState<string | null>(null);
 
   // derived state;
